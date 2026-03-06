@@ -1,0 +1,39 @@
+<?php
+
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\FuncionController;
+use App\Http\Controllers\Api\MesaController;
+use App\Http\Controllers\Api\ReservaController;
+use Illuminate\Support\Facades\Route;
+
+// Rutas públicas
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
+// Funciones públicas (para ver calendario)
+Route::get('/funciones', [FuncionController::class, 'index']);
+Route::get('/funciones/{funcion}', [FuncionController::class, 'show']);
+
+// Rutas protegidas
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/me', [AuthController::class, 'me']);
+
+    // Mesas
+    Route::get('/mesas', [MesaController::class, 'index']);
+    Route::get('/mesas/disponibilidad', [MesaController::class, 'disponibilidad']);
+
+    // Reservas
+    Route::get('/reservas', [ReservaController::class, 'index']);
+    Route::post('/reservas', [ReservaController::class, 'store']);
+    Route::get('/reservas/{reserva}', [ReservaController::class, 'show']);
+    Route::post('/reservas/{reserva}/cancel', [ReservaController::class, 'cancel']);
+    Route::post('/reservas/{reserva}/check-in', [ReservaController::class, 'checkIn']);
+
+    // Funciones (CRUD para admin/encargado)
+    Route::middleware('check.role:admin,encargado')->group(function () {
+        Route::post('/funciones', [FuncionController::class, 'store']);
+        Route::put('/funciones/{funcion}', [FuncionController::class, 'update']);
+        Route::delete('/funciones/{funcion}', [FuncionController::class, 'destroy']);
+    });
+});
