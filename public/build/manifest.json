@@ -4,7 +4,7 @@
     "name": "_plugin-vue_export-helper"
   },
   "resources/css/app.css": {
-    "file": "assets/app-CVVbImqZ.css",
+    "file": "assets/app-N-rfwRmu.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -13,7 +13,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-AdBTuVwz.js",
+    "file": "assets/app--AmNjd4P.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -34,7 +34,7 @@
     ]
   },
   "resources/js/views/FuncionDetalle.vue": {
-    "file": "assets/FuncionDetalle-C-99CRJL.js",
+    "file": "assets/FuncionDetalle-wey_UwJg.js",
     "name": "FuncionDetalle",
     "src": "resources/js/views/FuncionDetalle.vue",
     "isDynamicEntry": true,
@@ -47,7 +47,7 @@
     ]
   },
   "resources/js/views/Funciones.vue": {
-    "file": "assets/Funciones-CLjaOacJ.js",
+    "file": "assets/Funciones-DjJsh6Ap.js",
     "name": "Funciones",
     "src": "resources/js/views/Funciones.vue",
     "isDynamicEntry": true,
@@ -60,7 +60,7 @@
     ]
   },
   "resources/js/views/Home.vue": {
-    "file": "assets/Home-XE0P7zhk.js",
+    "file": "assets/Home-Cpr3sfIU.js",
     "name": "Home",
     "src": "resources/js/views/Home.vue",
     "isDynamicEntry": true,
@@ -73,7 +73,7 @@
     ]
   },
   "resources/js/views/Login.vue": {
-    "file": "assets/Login-B-EL12Gg.js",
+    "file": "assets/Login-qnS2oF3h.js",
     "name": "Login",
     "src": "resources/js/views/Login.vue",
     "isDynamicEntry": true,
@@ -86,7 +86,7 @@
     ]
   },
   "resources/js/views/MisReservas.vue": {
-    "file": "assets/MisReservas-Bp8qWOKc.js",
+    "file": "assets/MisReservas-DxJTd7AR.js",
     "name": "MisReservas",
     "src": "resources/js/views/MisReservas.vue",
     "isDynamicEntry": true,
@@ -99,7 +99,7 @@
     ]
   },
   "resources/js/views/Register.vue": {
-    "file": "assets/Register-CfZd_Q1y.js",
+    "file": "assets/Register-q2ohT5Jr.js",
     "name": "Register",
     "src": "resources/js/views/Register.vue",
     "isDynamicEntry": true,
@@ -112,7 +112,7 @@
     ]
   },
   "resources/js/views/Reservar.vue": {
-    "file": "assets/Reservar-bx1LNVJ8.js",
+    "file": "assets/Reservar-D4XvsMt7.js",
     "name": "Reservar",
     "src": "resources/js/views/Reservar.vue",
     "isDynamicEntry": true,
@@ -125,7 +125,7 @@
     ]
   },
   "resources/js/views/admin/Dashboard.vue": {
-    "file": "assets/Dashboard-Cnadzi_l.js",
+    "file": "assets/Dashboard-BlIxn2lV.js",
     "name": "Dashboard",
     "src": "resources/js/views/admin/Dashboard.vue",
     "isDynamicEntry": true,
@@ -138,7 +138,7 @@
     ]
   },
   "resources/js/views/admin/Funciones.vue": {
-    "file": "assets/Funciones--pRwHZv6.js",
+    "file": "assets/Funciones-DIA83Zmc.js",
     "name": "Funciones",
     "src": "resources/js/views/admin/Funciones.vue",
     "isDynamicEntry": true,
@@ -151,7 +151,7 @@
     ]
   },
   "resources/js/views/admin/Reservas.vue": {
-    "file": "assets/Reservas-D1BgVMTp.js",
+    "file": "assets/Reservas-ChwAsyZb.js",
     "name": "Reservas",
     "src": "resources/js/views/admin/Reservas.vue",
     "isDynamicEntry": true,
@@ -160,7 +160,7 @@
       "__plugin-vue_export-helper-DlAUqK2U.js"
     ],
     "css": [
-      "assets/Reservas-DpFW2WxA.css"
+      "assets/Reservas-DGfzreQC.css"
     ]
   }
 }

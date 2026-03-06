@@ -29,7 +29,15 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/reservas', [ReservaController::class, 'store']);
     Route::get('/reservas/{reserva}', [ReservaController::class, 'show']);
     Route::post('/reservas/{reserva}/cancel', [ReservaController::class, 'cancel']);
-    Route::post('/reservas/{reserva}/check-in', [ReservaController::class, 'checkIn']);
+    
+    // Acciones de admin/encargado
+    Route::middleware('check.role:admin,encargado')->group(function () {
+        Route::post('/reservas/{reserva}/check-in', [ReservaController::class, 'checkIn']);
+        Route::post('/reservas/{reserva}/confirm', [ReservaController::class, 'confirm']);
+        Route::post('/reservas/{reserva}/no-show', [ReservaController::class, 'noShow']);
+        Route::get('/reservas-stats', [ReservaController::class, 'stats']);
+        Route::get('/reservas-export', [ReservaController::class, 'export']);
+    });
 
     // Funciones (CRUD para admin/encargado)
     Route::middleware('check.role:admin,encargado')->group(function () {

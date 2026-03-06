@@ -15,15 +15,63 @@ class ReservaController extends Controller
     {
         $query = Reserva::with(['user', 'funcion', 'mesa']);
 
+        // Filtro por rol
         if ($request->user()->hasRole('cliente')) {
             $query->where('user_id', $request->user()->id);
+        }
+
+        // Filtros avanzados para admin/encargado
+        if ($request->has('funcion_id')) {
+            $query->where('funcion_id', $request->funcion_id);
+        }
+
+        if ($request->has('mesa_id')) {
+            $query->where('mesa_id', $request->mesa_id);
         }
 
         if ($request->has('estado')) {
             $query->where('estado', $request->estado);
         }
 
-        $reservas = $query->orderBy('created_at', 'desc')->get();
+        if ($request->has('fecha_desde')) {
+            $query->whereHas('funcion', function($q) use ($request) {
+                $q->whereDate('fecha', '>=', $request->fecha_desde);
+            });
+        }
+
+        if ($request->has('fecha_hasta')) {
+            $query->whereHas('funcion', function($q) use ($request) {
+                $q->whereDate('fecha', '<=', $request->fecha_hasta);
+            });
+        }
+
+        if ($request->has('es_vip')) {
+            $query->where('es_vip', $request->es_vip === 'true' || $request->es_vip === '1');
+        }
+
+        if ($request->has('incluye_cena')) {
+            $query->where('incluye_cena', $request->incluye_cena === 'true' || $request->incluye_cena === '1');
+        }
+
+        if ($request->has('search')) {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('codigo_reserva', 'like', "%{$search}%")
+                  ->orWhereHas('user', function($q) use ($search) {
+                      $q->where('name', 'like', "%{$search}%")
+                        ->orWhere('email', 'like', "%{$search}%");
+                  });
+            });
+        }
+
+        // Ordenamiento
+        $sortBy = $request->get('sort_by', 'created_at');
+        $sortOrder = $request->get('sort_order', 'desc');
+        $query->orderBy($sortBy, $sortOrder);
+
+        // Paginación
+        $perPage = $request->get('per_page', 15);
+        $reservas = $query->paginate($perPage);
 
         return response()->json($reservas);
     }
@@ -168,5 +216,130 @@ class ReservaController extends Controller
         $reserva->update(['check_in_at' => now()]);
 
         return response()->json(['message' => 'Check-in realizado exitosamente']);
+    }
+
+    /**
+     * Confirmar reserva (admin/encargado)
+     */
+    public function confirm(Reserva $reserva)
+    {
+        if ($reserva->estado === 'confirmada') {
+            return response()->json(['message' => 'La reserva ya está confirmada'], 422);
+        }
+
+        $reserva->update(['estado' => 'confirmada']);
+
+        return response()->json([
+            'message' => 'Reserva confirmada exitosamente',
+            'reserva' => $reserva->load(['user', 'funcion', 'mesa'])
+        ]);
+    }
+
+    /**
+     * Marcar como no-show (admin/encargado)
+     */
+    public function noShow(Reserva $reserva)
+    {
+        if ($reserva->estado === 'no_show') {
+            return response()->json(['message' => 'La reserva ya está marcada como no-show'], 422);
+        }
+
+        $reserva->update(['estado' => 'no_show']);
+
+        return response()->json([
+            'message' => 'Reserva marcada como no-show',
+            'reserva' => $reserva->load(['user', 'funcion', 'mesa'])
+        ]);
+    }
+
+    /**
+     * Estadísticas para dashboard
+     */
+    public function stats(Request $request)
+    {
+        $query = Reserva::query();
+
+        // Filtro por fecha
+        if ($request->has('fecha_desde')) {
+            $query->whereHas('funcion', function($q) use ($request) {
+                $q->whereDate('fecha', '>=', $request->fecha_desde);
+            });
+        }
+
+        if ($request->has('fecha_hasta')) {
+            $query->whereHas('funcion', function($q) use ($request) {
+                $q->whereDate('fecha', '<=', $request->fecha_hasta);
+            });
+        }
+
+        $stats = [
+            'total_reservas' => (clone $query)->count(),
+            'confirmadas' => (clone $query)->where('estado', 'confirmada')->count(),
+            'pendientes' => (clone $query)->where('estado', 'pendiente')->count(),
+            'canceladas' => (clone $query)->where('estado', 'cancelada')->count(),
+            'no_show' => (clone $query)->where('estado', 'no_show')->count(),
+            'con_check_in' => (clone $query)->whereNotNull('check_in_at')->count(),
+            'total_personas' => (clone $query)->whereIn('estado', ['confirmada', 'pendiente'])->sum('num_personas'),
+            'ingresos_totales' => (clone $query)->whereIn('estado', ['confirmada'])->sum('monto_total'),
+            'ingresos_vip' => (clone $query)->where('estado', 'confirmada')->where('es_vip', true)->sum('monto_total'),
+            'reservas_con_cena' => (clone $query)->where('incluye_cena', true)->count(),
+        ];
+
+        return response()->json($stats);
+    }
+
+    /**
+     * Exportar reservas (CSV)
+     */
+    public function export(Request $request)
+    {
+        $query = Reserva::with(['user', 'funcion', 'mesa']);
+
+        // Aplicar mismos filtros que index
+        if ($request->has('funcion_id')) {
+            $query->where('funcion_id', $request->funcion_id);
+        }
+
+        if ($request->has('estado')) {
+            $query->where('estado', $request->estado);
+        }
+
+        if ($request->has('fecha_desde')) {
+            $query->whereHas('funcion', function($q) use ($request) {
+                $q->whereDate('fecha', '>=', $request->fecha_desde);
+            });
+        }
+
+        if ($request->has('fecha_hasta')) {
+            $query->whereHas('funcion', function($q) use ($request) {
+                $q->whereDate('fecha', '<=', $request->fecha_hasta);
+            });
+        }
+
+        $reservas = $query->orderBy('created_at', 'desc')->get();
+
+        $csv = "Código,Cliente,Email,Función,Fecha,Mesa,Personas,VIP,Cena,Monto,Estado,Check-in\n";
+        
+        foreach ($reservas as $reserva) {
+            $csv .= sprintf(
+                "%s,%s,%s,%s,%s,%s,%d,%s,%s,%.2f,%s,%s\n",
+                $reserva->codigo_reserva,
+                $reserva->user->name,
+                $reserva->user->email,
+                $reserva->funcion->nombre,
+                $reserva->funcion->fecha->format('Y-m-d'),
+                "Mesa {$reserva->mesa->numero}",
+                $reserva->num_personas,
+                $reserva->es_vip ? 'Sí' : 'No',
+                $reserva->incluye_cena ? 'Sí' : 'No',
+                $reserva->monto_total,
+                $reserva->estado,
+                $reserva->check_in_at ? $reserva->check_in_at->format('Y-m-d H:i') : 'No'
+            );
+        }
+
+        return response($csv, 200)
+            ->header('Content-Type', 'text/csv')
+            ->header('Content-Disposition', 'attachment; filename="reservas_' . date('Y-m-d') . '.csv"');
     }
 }
