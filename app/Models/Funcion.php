@@ -32,6 +32,8 @@ class Funcion extends Model
         'precio_vip' => 'decimal:2',
     ];
 
+    protected $appends = ['imagen_principal'];
+
     public function imagenes(): HasMany
     {
         return $this->hasMany(FuncionImagen::class)->orderBy('orden');
@@ -40,6 +42,12 @@ class Funcion extends Model
     public function imagenPrincipal()
     {
         return $this->hasOne(FuncionImagen::class)->where('es_principal', true);
+    }
+
+    // Accessor para imagen_principal
+    public function getImagenPrincipalAttribute()
+    {
+        return $this->imagenes()->where('es_principal', true)->first();
     }
 
     public function reservas(): HasMany

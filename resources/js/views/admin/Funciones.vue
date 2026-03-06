@@ -375,14 +375,15 @@ const setPrincipal = async (imagen) => {
   try {
     await axios.post(`/api/funciones/${currentFuncion.value.id}/imagenes/${imagen.id}/principal`);
     
-    // Actualizar localmente
-    currentFuncion.value.imagenes.forEach(img => {
-      img.es_principal = img.id === imagen.id;
-    });
+    // Recargar la función completa para obtener datos actualizados
+    const response = await axios.get(`/api/funciones/${currentFuncion.value.id}`);
+    currentFuncion.value = response.data;
     
+    // Recargar lista de funciones para actualizar la tabla
     loadFunciones();
   } catch (error) {
-    alert('Error marcando como principal');
+    console.error('Error marcando como principal:', error);
+    alert('Error marcando como principal: ' + (error.response?.data?.message || error.message));
   }
 };
 

@@ -23,6 +23,7 @@ class FuncionImagenController extends Controller
 
         $imagenes = [];
         $maxOrden = $funcion->imagenes()->max('orden') ?? -1;
+        $tienePrincipal = $funcion->imagenes()->where('es_principal', true)->exists();
 
         if ($request->hasFile('imagenes')) {
             foreach ($request->file('imagenes') as $index => $imagen) {
@@ -34,14 +35,22 @@ class FuncionImagenController extends Controller
 
                 $altText = $request->input("alt_texts.{$index}") ?? $funcion->nombre;
                 
+                // Si no hay imagen principal, marcar la primera como principal
+                $esPrincipal = !$tienePrincipal && $index === 0;
+                
                 $funcionImagen = $funcion->imagenes()->create([
                     'ruta' => $path,
                     'orden' => $maxOrden + $index + 1,
-                    'es_principal' => false,
+                    'es_principal' => $esPrincipal,
                     'alt_text' => $altText,
                 ]);
 
                 $imagenes[] = $funcionImagen;
+                
+                // Actualizar flag para no marcar más como principal
+                if ($esPrincipal) {
+                    $tienePrincipal = true;
+                }
             }
         }
 

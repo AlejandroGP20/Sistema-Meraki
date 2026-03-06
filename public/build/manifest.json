@@ -13,7 +13,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-zjzwbXVP.js",
+    "file": "assets/app-AdBTuVwz.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -34,7 +34,7 @@
     ]
   },
   "resources/js/views/FuncionDetalle.vue": {
-    "file": "assets/FuncionDetalle-ClHSagnH.js",
+    "file": "assets/FuncionDetalle-C-99CRJL.js",
     "name": "FuncionDetalle",
     "src": "resources/js/views/FuncionDetalle.vue",
     "isDynamicEntry": true,
@@ -47,7 +47,7 @@
     ]
   },
   "resources/js/views/Funciones.vue": {
-    "file": "assets/Funciones-C5NUdBXf.js",
+    "file": "assets/Funciones-CLjaOacJ.js",
     "name": "Funciones",
     "src": "resources/js/views/Funciones.vue",
     "isDynamicEntry": true,
@@ -60,7 +60,7 @@
     ]
   },
   "resources/js/views/Home.vue": {
-    "file": "assets/Home-Cx0zk-QW.js",
+    "file": "assets/Home-XE0P7zhk.js",
     "name": "Home",
     "src": "resources/js/views/Home.vue",
     "isDynamicEntry": true,
@@ -73,7 +73,7 @@
     ]
   },
   "resources/js/views/Login.vue": {
-    "file": "assets/Login-BfLUpdzs.js",
+    "file": "assets/Login-B-EL12Gg.js",
     "name": "Login",
     "src": "resources/js/views/Login.vue",
     "isDynamicEntry": true,
@@ -86,7 +86,7 @@
     ]
   },
   "resources/js/views/MisReservas.vue": {
-    "file": "assets/MisReservas-CpZelPoB.js",
+    "file": "assets/MisReservas-Bp8qWOKc.js",
     "name": "MisReservas",
     "src": "resources/js/views/MisReservas.vue",
     "isDynamicEntry": true,
@@ -99,7 +99,7 @@
     ]
   },
   "resources/js/views/Register.vue": {
-    "file": "assets/Register-CEE3oe6d.js",
+    "file": "assets/Register-CfZd_Q1y.js",
     "name": "Register",
     "src": "resources/js/views/Register.vue",
     "isDynamicEntry": true,
@@ -112,7 +112,7 @@
     ]
   },
   "resources/js/views/Reservar.vue": {
-    "file": "assets/Reservar-C8aqSeEt.js",
+    "file": "assets/Reservar-bx1LNVJ8.js",
     "name": "Reservar",
     "src": "resources/js/views/Reservar.vue",
     "isDynamicEntry": true,
@@ -125,7 +125,7 @@
     ]
   },
   "resources/js/views/admin/Dashboard.vue": {
-    "file": "assets/Dashboard-D3mvByJ6.js",
+    "file": "assets/Dashboard-Cnadzi_l.js",
     "name": "Dashboard",
     "src": "resources/js/views/admin/Dashboard.vue",
     "isDynamicEntry": true,
@@ -138,7 +138,7 @@
     ]
   },
   "resources/js/views/admin/Funciones.vue": {
-    "file": "assets/Funciones-CT09iXsd.js",
+    "file": "assets/Funciones--pRwHZv6.js",
     "name": "Funciones",
     "src": "resources/js/views/admin/Funciones.vue",
     "isDynamicEntry": true,
@@ -147,11 +147,11 @@
       "__plugin-vue_export-helper-DlAUqK2U.js"
     ],
     "css": [
-      "assets/Funciones-CD8bfSLR.css"
+      "assets/Funciones-BfEZCT2N.css"
     ]
   },
   "resources/js/views/admin/Reservas.vue": {
-    "file": "assets/Reservas-CW5Cnx7Y.js",
+    "file": "assets/Reservas-D1BgVMTp.js",
     "name": "Reservas",
     "src": "resources/js/views/admin/Reservas.vue",
     "isDynamicEntry": true,

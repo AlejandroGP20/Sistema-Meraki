@@ -11,7 +11,7 @@ class FuncionController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Funcion::with(['imagenes', 'imagenPrincipal']);
+        $query = Funcion::with('imagenes');
 
         if ($request->has('fecha')) {
             $query->whereDate('fecha', $request->fecha);
@@ -55,7 +55,7 @@ class FuncionController extends Controller
 
     public function show(Funcion $funcion)
     {
-        return response()->json($funcion->load(['imagenes', 'imagenPrincipal', 'reservas']));
+        return response()->json($funcion->load(['imagenes', 'reservas']));
     }
 
     public function update(Request $request, Funcion $funcion)
