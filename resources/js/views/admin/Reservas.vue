@@ -402,7 +402,18 @@ import axios from 'axios';
 
 const reservas = ref({ data: [], current_page: 1, last_page: 1, total: 0 });
 const funciones = ref([]);
-const stats = ref({});
+const stats = ref({
+  total_reservas: 0,
+  confirmadas: 0,
+  pendientes: 0,
+  canceladas: 0,
+  no_show: 0,
+  con_check_in: 0,
+  total_personas: 0,
+  ingresos_totales: 0,
+  ingresos_vip: 0,
+  reservas_con_cena: 0,
+});
 const loading = ref(false);
 const showDetailsModal = ref(false);
 const selectedReserva = ref(null);
@@ -435,7 +446,12 @@ const loadReservas = async () => {
     reservas.value = response.data;
   } catch (error) {
     console.error('Error cargando reservas:', error);
-    alert('Error al cargar reservas');
+    if (error.response?.status === 401) {
+      alert('Sesión expirada. Por favor inicia sesión nuevamente.');
+      window.location.href = '/login';
+    } else {
+      alert('Error al cargar reservas: ' + (error.response?.data?.message || error.message));
+    }
   } finally {
     loading.value = false;
   }
@@ -460,6 +476,7 @@ const loadStats = async () => {
     stats.value = response.data;
   } catch (error) {
     console.error('Error cargando estadísticas:', error);
+    // No mostrar alerta, solo log
   }
 };
 
