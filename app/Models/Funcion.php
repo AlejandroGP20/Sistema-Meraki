@@ -34,7 +34,12 @@ class Funcion extends Model
 
     public function imagenes(): HasMany
     {
-        return $this->hasMany(FuncionImagen::class);
+        return $this->hasMany(FuncionImagen::class)->orderBy('orden');
+    }
+
+    public function imagenPrincipal()
+    {
+        return $this->hasOne(FuncionImagen::class)->where('es_principal', true);
     }
 
     public function reservas(): HasMany

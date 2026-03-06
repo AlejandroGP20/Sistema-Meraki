@@ -19,7 +19,9 @@
         "konva": "^10.2.0",
         "pinia": "^3.0.4",
         "qrcode-vue3": "^1.7.1",
+        "sortablejs": "^1.15.7",
         "vue": "^3.5.29",
+        "vue-draggable-next": "^2.3.0",
         "vue-konva": "^3.3.0",
         "vue-router": "^4.6.4"
     }

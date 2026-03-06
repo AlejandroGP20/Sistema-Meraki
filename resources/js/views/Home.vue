@@ -64,13 +64,15 @@
             <div class="funcion-image">
               <img 
                 v-if="funcion.imagen_principal" 
-                :src="`/storage/${funcion.imagen_principal}`" 
-                :alt="funcion.nombre"
+                :src="`/storage/${funcion.imagen_principal.ruta}`" 
+                :alt="funcion.imagen_principal.alt_text || funcion.nombre"
+                loading="lazy"
               />
               <div v-else class="funcion-placeholder">
-                <span>🎬</span>
+                <span>🎭</span>
+                <p>{{ funcion.nombre }}</p>
               </div>
-              <div class="funcion-badge">{{ funcion.genero }}</div>
+              <div v-if="funcion.genero_musical" class="funcion-badge">{{ funcion.genero_musical }}</div>
             </div>
             <div class="funcion-content">
               <h3 class="funcion-title">{{ funcion.nombre }}</h3>

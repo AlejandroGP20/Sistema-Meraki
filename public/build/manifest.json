@@ -1,0 +1,166 @@
+{
+  "__plugin-vue_export-helper-DlAUqK2U.js": {
+    "file": "assets/_plugin-vue_export-helper-DlAUqK2U.js",
+    "name": "_plugin-vue_export-helper"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-CVVbImqZ.css",
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "name": "app",
+    "names": [
+      "app.css"
+    ]
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-zjzwbXVP.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "dynamicImports": [
+      "resources/js/views/Home.vue",
+      "resources/js/views/Login.vue",
+      "resources/js/views/Register.vue",
+      "resources/js/views/Funciones.vue",
+      "resources/js/views/FuncionDetalle.vue",
+      "resources/js/views/Reservar.vue",
+      "resources/js/views/MisReservas.vue",
+      "resources/js/views/admin/Dashboard.vue",
+      "resources/js/views/admin/Funciones.vue",
+      "resources/js/views/admin/Reservas.vue"
+    ],
+    "css": [
+      "assets/app-r4RYV8jn.css"
+    ]
+  },
+  "resources/js/views/FuncionDetalle.vue": {
+    "file": "assets/FuncionDetalle-ClHSagnH.js",
+    "name": "FuncionDetalle",
+    "src": "resources/js/views/FuncionDetalle.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "__plugin-vue_export-helper-DlAUqK2U.js"
+    ],
+    "css": [
+      "assets/FuncionDetalle-eWw6tj9a.css"
+    ]
+  },
+  "resources/js/views/Funciones.vue": {
+    "file": "assets/Funciones-C5NUdBXf.js",
+    "name": "Funciones",
+    "src": "resources/js/views/Funciones.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "__plugin-vue_export-helper-DlAUqK2U.js"
+    ],
+    "css": [
+      "assets/Funciones-ClQw_lyL.css"
+    ]
+  },
+  "resources/js/views/Home.vue": {
+    "file": "assets/Home-Cx0zk-QW.js",
+    "name": "Home",
+    "src": "resources/js/views/Home.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "__plugin-vue_export-helper-DlAUqK2U.js"
+    ],
+    "css": [
+      "assets/Home-CaciELKP.css"
+    ]
+  },
+  "resources/js/views/Login.vue": {
+    "file": "assets/Login-BfLUpdzs.js",
+    "name": "Login",
+    "src": "resources/js/views/Login.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "__plugin-vue_export-helper-DlAUqK2U.js"
+    ],
+    "css": [
+      "assets/Login-CkfYoQbg.css"
+    ]
+  },
+  "resources/js/views/MisReservas.vue": {
+    "file": "assets/MisReservas-CpZelPoB.js",
+    "name": "MisReservas",
+    "src": "resources/js/views/MisReservas.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "__plugin-vue_export-helper-DlAUqK2U.js"
+    ],
+    "css": [
+      "assets/MisReservas-CKz_a86U.css"
+    ]
+  },
+  "resources/js/views/Register.vue": {
+    "file": "assets/Register-CEE3oe6d.js",
+    "name": "Register",
+    "src": "resources/js/views/Register.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "__plugin-vue_export-helper-DlAUqK2U.js"
+    ],
+    "css": [
+      "assets/Register-dhbaTvaC.css"
+    ]
+  },
+  "resources/js/views/Reservar.vue": {
+    "file": "assets/Reservar-C8aqSeEt.js",
+    "name": "Reservar",
+    "src": "resources/js/views/Reservar.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "__plugin-vue_export-helper-DlAUqK2U.js"
+    ],
+    "css": [
+      "assets/Reservar-iJibOt0Z.css"
+    ]
+  },
+  "resources/js/views/admin/Dashboard.vue": {
+    "file": "assets/Dashboard-D3mvByJ6.js",
+    "name": "Dashboard",
+    "src": "resources/js/views/admin/Dashboard.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "__plugin-vue_export-helper-DlAUqK2U.js"
+    ],
+    "css": [
+      "assets/Dashboard-DK-kihiF.css"
+    ]
+  },
+  "resources/js/views/admin/Funciones.vue": {
+    "file": "assets/Funciones-CT09iXsd.js",
+    "name": "Funciones",
+    "src": "resources/js/views/admin/Funciones.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "__plugin-vue_export-helper-DlAUqK2U.js"
+    ],
+    "css": [
+      "assets/Funciones-CD8bfSLR.css"
+    ]
+  },
+  "resources/js/views/admin/Reservas.vue": {
+    "file": "assets/Reservas-CW5Cnx7Y.js",
+    "name": "Reservas",
+    "src": "resources/js/views/admin/Reservas.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "__plugin-vue_export-helper-DlAUqK2U.js"
+    ],
+    "css": [
+      "assets/Reservas-DpFW2WxA.css"
+    ]
+  }
+}

@@ -13,6 +13,12 @@ class FuncionImagen extends Model
         'funcion_id',
         'ruta',
         'orden',
+        'es_principal',
+        'alt_text',
+    ];
+
+    protected $casts = [
+        'es_principal' => 'boolean',
     ];
 
     public function funcion(): BelongsTo

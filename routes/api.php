@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\FuncionController;
+use App\Http\Controllers\Api\FuncionImagenController;
 use App\Http\Controllers\Api\MesaController;
 use App\Http\Controllers\Api\ReservaController;
 use Illuminate\Support\Facades\Route;
@@ -35,5 +36,12 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/funciones', [FuncionController::class, 'store']);
         Route::put('/funciones/{funcion}', [FuncionController::class, 'update']);
         Route::delete('/funciones/{funcion}', [FuncionController::class, 'destroy']);
+        
+        // Gestión de imágenes
+        Route::post('/funciones/{funcion}/imagenes', [FuncionImagenController::class, 'store']);
+        Route::post('/funciones/{funcion}/imagenes/reorder', [FuncionImagenController::class, 'reorder']);
+        Route::post('/funciones/{funcion}/imagenes/{imagen}/principal', [FuncionImagenController::class, 'setPrincipal']);
+        Route::put('/imagenes/{imagen}/alt-text', [FuncionImagenController::class, 'updateAltText']);
+        Route::delete('/imagenes/{imagen}', [FuncionImagenController::class, 'destroy']);
     });
 });

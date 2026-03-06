@@ -23,7 +23,7 @@ const routes = [
     component: () => import('../views/Funciones.vue'),
   },
   {
-    path: '/funciones/:id',
+    path: '/funcion/:id',
     name: 'FuncionDetalle',
     component: () => import('../views/FuncionDetalle.vue'),
   },
