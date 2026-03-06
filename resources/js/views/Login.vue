@@ -12,7 +12,10 @@
           <input v-model="form.password" type="password" required />
         </div>
         <div v-if="error" class="error">{{ error }}</div>
-        <button type="submit" class="btn-submit">Ingresar</button>
+        <button type="submit" class="btn-submit" :disabled="loading">
+          <span v-if="loading">Ingresando...</span>
+          <span v-else>Ingresar</span>
+        </button>
       </form>
       <p class="link-text">
         ¿No tienes cuenta? <router-link to="/register">Regístrate</router-link>
@@ -38,20 +41,32 @@ const form = ref({
 });
 
 const error = ref('');
+const loading = ref(false);
 
 const handleLogin = async () => {
   try {
     error.value = '';
+    loading.value = true;
+    console.log('Intentando login con:', form.value.email);
+    
     await authStore.login(form.value);
+    
+    console.log('Login exitoso, usuario:', authStore.user);
+    console.log('Roles:', authStore.userRoles);
     
     // Redirigir según el rol
     if (authStore.hasRole(['admin', 'encargado'])) {
+      console.log('Redirigiendo a /admin');
       router.push('/admin');
     } else {
+      console.log('Redirigiendo a /');
       router.push('/');
     }
   } catch (err) {
+    console.error('Error en login:', err);
     error.value = err.response?.data?.message || 'Error al iniciar sesión';
+  } finally {
+    loading.value = false;
   }
 };
 </script>
@@ -110,6 +125,16 @@ const handleLogin = async () => {
   border-radius: 4px;
   font-size: 1rem;
   cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-submit:hover:not(:disabled) {
+  background: #5568d3;
+}
+
+.btn-submit:disabled {
+  background: #95a5a6;
+  cursor: not-allowed;
 }
 
 .link-text {
